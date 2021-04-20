@@ -6,11 +6,13 @@ var logger = require('morgan');
 
 const MongoClient = require('mongodb').MongoClient;
 
-MongoClient.connect('mongodb+srv://ljwedin:7BBvdNqfJLzSiQR6@cluster0.q6ewk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+MongoClient.connect('mongodb+srv://ljwedin:7BBvdNqfJLzSiQR6@cluster0.q6ewk.mongodb.net/fed20d_dynweb?retryWrites=true&w=majority', {
   useUnifiedTopology: true
 })
 .then(client => {
   console.log('Vi är uppkopplade mot databasen!');
+  const db = client.db('fed20d_dynweb');
+  app.locals.db = db;
 })
 
 var indexRouter = require('./routes/index');
@@ -27,6 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
