@@ -3,9 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// const mongoose = require('./database/database');
+
+const MongoClient = require('mongodb').MongoClient;
+
+MongoClient.connect('mongodb+srv://ljwedin:7BBvdNqfJLzSiQR6@cluster0.q6ewk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+  useUnifiedTopology: true
+})
+.then(client => {
+  console.log('Vi är uppkopplade mot databasen!');
+})
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+// const userDatabaseRouter = require('./routes/userDatabase')
 
 var app = express();
 
@@ -21,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+// app.use('/userDatabase', userDatabaseRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
