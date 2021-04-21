@@ -1,0 +1,65 @@
+body {
+  background-color: #272727;
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  padding: 0;
+  margin: 0;
+}
+
+.main {
+  padding: 30px 40px;
+}
+
+h1 {
+  color: #faa815;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+h2 {
+  font-size: 1.2rem;
+  color: #ffe2ad;
+  font-weight: 400;
+}
+
+.slash:after {
+  content: '/ ';
+  color: white;
+}
+
+input {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid white;
+  border: none;
+  width: 400px;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+button, #loginBtn {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #faa815;
+  color: #272727;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 0 solid #faa815;
+  outline: none;
+  width: 85px;
+  margin: 5px;
+  padding: 5px;
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+
+button:hover, #loginBtn:hover {
+  background-color: #ffe2ad;
+}
+
+button:active, #loginBtn:active {
+  background-color: #202020;
+  color: #faa815;
+}
+/*# sourceMappingURL=styles.css.map */
