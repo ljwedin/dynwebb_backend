@@ -37,7 +37,7 @@ input {
   margin-top: 10px;
 }
 
-button, #loginBtn {
+button, #loginBtn, #logoutBtn {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background-color: #faa815;
@@ -54,12 +54,12 @@ button, #loginBtn {
   transition: all 0.2s ease 0s;
 }
 
-button:hover, #loginBtn:hover {
+button:hover, #loginBtn:hover, #logoutBtn:hover {
   background-color: #ffe2ad;
 }
 
-button:active, #loginBtn:active {
+button:active, #loginBtn:active, #logoutBtn:active {
   background-color: #202020;
   color: #faa815;
 }
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=style.css.map */

@@ -5,10 +5,8 @@ var router = express.Router();
 router.get('/', (req, res, next) => {
   req.app.locals.db.collection('users').find().toArray()
   .then(results => {
-    console.log(results);
+    res.send(results);;
   })
-  
-  res.send('respond with a resource');
 });
 
 router.post('/add', (req, res) => {

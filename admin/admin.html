@@ -11,6 +11,53 @@
 <body>
     <div class="main">
         <h1>INLOGGAD</h1>
+        <form method="POST">
+            <input type="submit" id="logoutBtn" value="Logga ut" />
+        </form>
+        <section>
+            <article id="users"></article>
+            <article id="users-newsletter"></article>
+        </section>
     </div>
+    <script>
+        function storeAdminLocal () {
+            localStorage.setItem('adminLoggedIn', true);
+        }
+
+        storeAdminLocal();
+
+        document.getElementById('logoutBtn').addEventListener('click', clearLocalStorage);
+
+        function clearLocalStorage() {
+            localStorage.clear();
+        }
+
+        async function getUsers() {
+            let url = './users';
+            try {
+                let res = await fetch(url);
+                return await res.json();
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        async function renderUsers() {
+            let users = await getUsers();
+            const usersContainer = document.querySelector('#users');
+            const usersNewsletterContainer = document.querySelector('#users-newsletter');
+
+            let usersHtml = '';
+            let usersNewsletterHtml = '';
+
+            for (let user in users) {
+                usersHtml += users[user].userName;
+            }
+            
+            usersContainer.insertAdjacentHTML('beforeend', usersHtml);
+        }
+
+        renderUsers();
+    </script>
 </body>
 </html>
