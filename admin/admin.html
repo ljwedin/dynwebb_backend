@@ -33,7 +33,7 @@
         }
 
         async function getUsers() {
-            let url = './users';
+            let url = 'https://dynwebb-01-backend.herokuapp.com/users';
             try {
                 let res = await fetch(url);
                 return await res.json();
@@ -47,14 +47,27 @@
             const usersContainer = document.querySelector('#users');
             const usersNewsletterContainer = document.querySelector('#users-newsletter');
 
-            let usersHtml = '';
-            let usersNewsletterHtml = '';
+            let usersHtml = '<h2>Användare</h2>';
+            let usersNewsletterHtml = '<h2>Användare som vill ha nyhetsbrev</h2>';
 
             for (let user in users) {
-                usersHtml += users[user].userName;
+                usersHtml += `
+                    <p>Username: ${users[user].userName}</p><br />
+                    <p>Username: ${users[user].email}</p><br />
+                `;
             }
             
+            for (let user in users) {
+                if (users[user].newsletter === true) {
+                    usersNewsletterHtml += `
+                        <p>Username: ${users[user].userName}</p><br />
+                        <p>Username: ${users[user].email}</p><br />
+                    `;
+                }
+            }
+
             usersContainer.insertAdjacentHTML('beforeend', usersHtml);
+            usersNewsletterContainer.insertAdjacentHTML('beforeend', usersNewsletterHtml);
         }
 
         renderUsers();
