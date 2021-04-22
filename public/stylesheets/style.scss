@@ -20,6 +20,7 @@ h2 {
     font-size: 1.2rem;
     color: #ffe2ad;
     font-weight: 400;
+    margin-top: 50px;
 }
 
 .slash:after {
@@ -46,7 +47,6 @@ button, #loginBtn, #logoutBtn {
     border: 0 solid #faa815;
     outline: none;
     width: 85px;
-    margin: 5px;
     padding: 5px;
     transition: all 0.2s ease 0s;
     &:hover {
@@ -56,4 +56,12 @@ button, #loginBtn, #logoutBtn {
         background-color: #202020;
         color: #faa815;
     }
+}
+
+.user {
+    margin-top: 30px;
+}
+
+#users-newsletter {
+    margin-bottom: 50px;
 }

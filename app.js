@@ -18,6 +18,7 @@ MongoClient.connect('mongodb+srv://ljwedin:7BBvdNqfJLzSiQR6@cluster0.q6ewk.mongo
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const adminRouter = require('./routes/admin')
+const publicRouter = require('./routes/publicLogin');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use(express.json());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
+app.use('/login', publicRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

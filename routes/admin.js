@@ -26,7 +26,7 @@ const loginError = `
     </html>`;
 
 router.get('/', (req, res, next) => {
-    res.sendFile('login.html', { root: './public'});
+    res.sendFile('login.html', { root: './admin'});
 });
 
 router.post('/', (req, res) => {
