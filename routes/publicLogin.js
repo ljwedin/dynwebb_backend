@@ -8,9 +8,29 @@ router.get('/', (req, res, next) => {
     res.send('testRes');
 });
 
+// POST test
+// router.post('/', (req, res) => {
+//     let testRes = true;
+//     res.send(testRes);
+// });
+
 router.post('/', (req, res) => {
-    let testRes = true;
-    res.send('testRes');
+    console.log(req.body.userName);
+
+    req.app.locals.db.collection('users').find().toArray()
+    .then(results => {
+        for (let user in results) {
+            if (req.body.userName === results[user].userName) {
+                if (req.body.password === results[user].password) {
+                    const userObject = results[user];
+                    const id = userObject._id;
+                    res.send(id);
+                }
+            } else {
+                res.send(false);
+            }
+        }
+    })
 });
 
 module.exports = router;

@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', (req, res, next) => {
   req.app.locals.db.collection('users').find().toArray()
   .then(results => {
-    res.send(results);;
+    res.send(results);
   })
 });
 
