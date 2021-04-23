@@ -5,11 +5,12 @@ router.get('/', (req, res, next) => {
     let user = req.body;
     console.log(user);
     let testRes = true;
-    res.send(testRes);
+    res.send('testRes');
 });
 
 router.post('/', (req, res) => {
-    res.send('Hallå från servern!');
+    let testRes = true;
+    res.send('testRes');
 });
 
 module.exports = router;
