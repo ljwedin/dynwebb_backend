@@ -16,7 +16,9 @@ router.post('/', (req, res) => {
 
         for (let user in results) {
             if (req.body.userName === results[user].userName) {
-                if (req.body.password === results[user].password) {
+                const passDb = CryptoJS.AES.decrypt(results[user].password, process.env.SALT_KEY).toString(CryptoJS.enc.Utf8);
+
+                if (req.body.password === passDb) {
                     const userObject = results[user];
                     id = userObject._id;
                 }
