@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const ObjectID = require('mongodb').ObjectID;
 
 router.get('/', (req, res, next) => {
     req.app.locals.db.collection('users').find().toArray()
@@ -10,33 +11,12 @@ router.get('/', (req, res, next) => {
     })
 });
 
-
-// router.post('/', (req, res) => {
-//     req.app.locals.db.collection('users').find().toArray()
-//     .then(results => {
-//         for (let user in results) {
-//             if (req.body.userName === results[user].userName) {
-//                 if (req.body.password === results[user].password) {
-//                     const userObject = results[user];
-//                     const id = userObject._id;
-//                     res.send(id);
-//                     break;
-//                 }
-//             }
-//         }
-//     });
-// });
-
 router.post('/', (req, res) => {
     req.app.locals.db.collection('users').find().toArray()
     .then(results => {
         let userInfo;
 
-        // console.log(typeof req.body.id);
-        // console.log(typeof JSON.parse(results[3]._id));
-
         for (let user in results) {
-            // let dbUser = JSON.parse(results[user]);
             console.log(results[user]);
             if (req.body.id == results[user]._id) {
                 const userObject = results[user];
@@ -46,7 +26,6 @@ router.post('/', (req, res) => {
                     newsletter: userObject.newsletter
                 }
             }
-
         }
 
         if (userInfo == undefined) {
@@ -57,5 +36,16 @@ router.post('/', (req, res) => {
     });
 });
 
+router.post('/updatename', (req, res) => {
+    const newUserName = req.body.userName;
+    const id = req.body.id;
+
+    req.app.locals.db.collection('users').updateOne({ _id: ObjectID(id) }, {$set: {userName: newUserName}})
+    .then(result => {
+        const updateResultObject = JSON.parse(result);
+        const updateResult = { result: updateResultObject.result.n };
+        res.send(updateResult);
+    })  
+})
 
 module.exports = router;
