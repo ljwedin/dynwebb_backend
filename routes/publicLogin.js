@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const CryptoJS = require('crypto-js');
 
 router.get('/', (req, res, next) => {
     let user = req.body;
@@ -7,12 +8,6 @@ router.get('/', (req, res, next) => {
     let testRes = true;
     res.send('testRes');
 });
-
-// POST test
-// router.post('/', (req, res) => {
-//     let testRes = true;
-//     res.send(testRes);
-// });
 
 router.post('/', (req, res) => {
     req.app.locals.db.collection('users').find().toArray()

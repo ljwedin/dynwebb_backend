@@ -4,10 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
+require('dotenv').config();
 
 const MongoClient = require('mongodb').MongoClient;
 
-MongoClient.connect('mongodb+srv://ljwedin:7BBvdNqfJLzSiQR6@cluster0.q6ewk.mongodb.net/fed20d_dynweb?retryWrites=true&w=majority', {
+MongoClient.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true
 })
 .then(client => {
