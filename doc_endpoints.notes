@@ -5,9 +5,27 @@ User test-id: 6082a9357b52a0c3f83d8261
         - Post: object { id: "id" }
         - Send: object { userName: "userName", email: "email", newsletter: bool } if POST id match, else returns false
     
-/userpage/updatename
+    /userpage/updatename
+        - POST
+            - Post: object { id: "id", userName: "newUserName" }
+            - Update: MongoDB atlas
+            - Send: object { result: 1 } for success, { result: 0 } for failure to update
+
+            /userpage/updateemail
+        - POST
+            - Post: object { id: "id", email: "newEmail" }
+            - Update: MongoDB atlas
+            - Send: object { result: 1 } for success, { result: 0 } for failure to update
+
+            /userpage/updatenewletter
+        - POST
+            - Post: object { id: "id", newletter: bool }
+            - Update: MongoDB atlas
+            - Send: object { result: 1 } for success, { result: 0 } for failure to update
+
+/newUser
     - POST
-        - Post: object { id: "id", userName: "newUserName" }
-        - Update: MongoDB atlas
+        - Post: object { userName: "userName", password: "password" email: "email", newsletter: bool }
+        - Insert: MongoDB atlas
         - Send: object { result: 1 } for success, { result: 0 } for failure to update
 
