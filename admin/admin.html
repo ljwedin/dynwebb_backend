@@ -51,12 +51,12 @@
             const usersNewsletterContainer = document.querySelector('#users-newsletter');
 
             let usersHtml = '<h2>Användare</h2>';
-            let usersNewsletterHtml = '<h2>Användare som vill ha nyhetsbrev</h2>';
+            let usersNewsletterHtml = '<h2>Mailadresser som vill ha nyhetsbrev</h2>';
 
             for (let user in users) {
                 usersHtml += `
                     <div class="user">
-                        <p>Username: ${users[user].userName}</p>
+                        <p>Användarnamn: ${users[user].userName}</p>
                         <p>Email: ${users[user].email}</p>
                     </div>
                 `;
@@ -66,8 +66,7 @@
                 if (users[user].newsletter === true) {
                     usersNewsletterHtml += `
                         <div class="user">
-                            <p>Username: ${users[user].userName}</p>
-                            <p>Email: ${users[user].email}</p>
+                            <p>${users[user].email}</p>
                         </div>
                     `;
                 }
