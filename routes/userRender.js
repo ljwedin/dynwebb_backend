@@ -15,11 +15,19 @@ router.post('/', (req, res) => {
     req.app.locals.db.collection('users').find().toArray()
     .then(results => {
         let userInfo;
+        let newsletter = '';
 
         for (let user in results) {
             console.log(results[user]);
             if (req.body.id == results[user]._id) {
-                const userObject = results[user];
+                let userObject = results[user];
+
+                if (userObject.newsletter === true) {
+                    userObject.newsletter = 'Ja';
+                } else {
+                    userObject.newsletter = 'Nej';
+                }
+
                 userInfo = {
                     userName: userObject.userName,
                     email: userObject.email,
@@ -61,7 +69,9 @@ router.post('/updateemail', (req, res) => {
 })
 
 router.post('/updatenewsletter', (req, res) => {
-    const newNewsletter = req.body.newsletter;
+    let newNewsletter = req.body.newsletter;
+    console.log(req.body.newsletter);
+    console.log(typeof req.body.newsletter);
     const id = req.body.id;
 
     req.app.locals.db.collection('users').updateOne({ _id: ObjectID(id) }, { $set: { newsletter: newNewsletter }})

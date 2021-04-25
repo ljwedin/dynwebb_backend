@@ -3,7 +3,7 @@ User test-id: 6082a9357b52a0c3f83d8261
 /userpage
     - POST
         - Post: object { id: "id" }
-        - Send: object { userName: "userName", email: "email", newsletter: bool } if POST id match, else returns false
+        - Send: object { userName: "userName", email: "email", newsletter: "ja/nej" } if POST id match, else returns false
     
     /userpage/updatename
         - POST
@@ -17,7 +17,7 @@ User test-id: 6082a9357b52a0c3f83d8261
             - Update: MongoDB atlas
             - Send: object { result: 1 } for success, { result: 0 } for failure to update
 
-    /userpage/updatenewletter
+    /userpage/updatenewsletter
         - POST
             - Post: object { id: "id", newletter: bool }
             - Update: MongoDB atlas
