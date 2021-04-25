@@ -3,11 +3,10 @@ var router = express.Router();
 const CryptoJS = require('crypto-js');
 
 router.get('/', (req, res, next) => {
-    let user = req.body;
-    console.log(user);
-    let testRes = true;
     res.send('testRes');
 });
+
+// Checks input credentials against database and returns id or false bool depending on results
 
 router.post('/', (req, res) => {
     req.app.locals.db.collection('users').find().toArray()

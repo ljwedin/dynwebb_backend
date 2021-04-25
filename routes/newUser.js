@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const CryptoJS = require('crypto-js');
 
+// Encrypts password and passes input parameters to MongoDB atabase as new user (via insertOne)
+
 router.post('/', (req, res, next) => {
     const userPass = req.body.password;
     const cryptPass = CryptoJS.AES.encrypt(userPass, process.env.SALT_KEY).toString();

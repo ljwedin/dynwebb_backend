@@ -5,7 +5,6 @@ const ObjectID = require('mongodb').ObjectID;
 router.get('/', (req, res, next) => {
     req.app.locals.db.collection('users').find().toArray()
     .then(results => {
-        console.log(req.body);
         let user = results.find(req.body._id);
         res.send(user);
     })
@@ -15,7 +14,6 @@ router.post('/', (req, res) => {
     req.app.locals.db.collection('users').find().toArray()
     .then(results => {
         let userInfo;
-        let newsletter = '';
 
         for (let user in results) {
             console.log(results[user]);
@@ -43,30 +41,6 @@ router.post('/', (req, res) => {
         res.send(userInfo);
     });
 });
-
-router.post('/updatename', (req, res) => {
-    const newUserName = req.body.userName;
-    const id = req.body.id;
-
-    req.app.locals.db.collection('users').updateOne({ _id: ObjectID(id) }, { $set: { userName: newUserName }})
-    .then(result => {
-        const updateResultObject = JSON.parse(result);
-        const updateResult = { result: updateResultObject.result.n };
-        res.send(updateResult);
-    })  
-})
-
-router.post('/updateemail', (req, res) => {
-    const newEmail = req.body.email;
-    const id = req.body.id;
-
-    req.app.locals.db.collection('users').updateOne({ _id: ObjectID(id) }, {$set: { email: newEmail }})
-    .then(result => {
-        const updateResultObject = JSON.parse(result);
-        const updateResult = { result: updateResultObject.result.n };
-        res.send(updateResult);
-    })  
-})
 
 router.post('/updatenewsletter', (req, res) => {
     let newNewsletter = req.body.newsletter;

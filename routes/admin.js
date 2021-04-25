@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+// Bad variable and functionality that should have been rewritten
 const loginError = `
     <!DOCTYPE html>
     <html lang="en">

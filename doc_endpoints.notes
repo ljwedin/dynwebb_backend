@@ -1,21 +1,9 @@
-User test-id: 6082a9357b52a0c3f83d8261
+User test-id: 60859e246c3ed60015c56cf0
 
 /userpage
     - POST
         - Post: object { id: "id" }
         - Send: object { userName: "userName", email: "email", newsletter: "ja/nej" } if POST id match, else returns false
-    
-    /userpage/updatename
-        - POST
-            - Post: object { id: "id", userName: "newUserName" }
-            - Update: MongoDB atlas
-            - Send: object { result: 1 } for success, { result: 0 } for failure to update
-
-    /userpage/updateemail
-        - POST
-            - Post: object { id: "id", email: "newEmail" }
-            - Update: MongoDB atlas
-            - Send: object { result: 1 } for success, { result: 0 } for failure to update
 
     /userpage/updatenewsletter
         - POST
